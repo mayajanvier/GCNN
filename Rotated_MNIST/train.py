@@ -1,23 +1,19 @@
+from __future__ import print_function, division
 
 #Dependencies
-from typing import Mapping, Union, Optional
-
+from typing import Mapping, Union, Optional, Callable, Dict
 import numpy as np
 import argparse
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-import plotly.graph_objects as go
+
 import torchvision
 from torchvision import datasets, models, transforms
 import os
-from tqdm.notebook import tqdm
-import plotly.express as px
-import tensorflow as tf 
+from tqdm import tqdm, trange
 
-from torch.utils.data import TensorDataset
-from __future__ import print_function, division
 
 #reproducibility stuff
 
@@ -52,17 +48,9 @@ test_loader_MNIST = torch.utils.data.DataLoader(datasets.MNIST('./', train=False
                 batch_size=1000,
                 shuffle=True)
 
-#Display a rotated image 
-mnist_example = next(iter(train_loader_MNIST))
-fig = px.imshow(mnist_example[0][2][0])
-fig.show()
+
 
 #Training routine 
-import torch
-import torch.nn.functional as F
-from typing import Optional, Callable, Dict
-from tqdm.notebook import tqdm, trange
-
 
 def permute_pixels(images: torch.Tensor, perm: Optional[torch.Tensor]) -> torch.Tensor:
     """ Permutes the pixel in each image in the batch
