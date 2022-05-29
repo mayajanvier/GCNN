@@ -1,3 +1,5 @@
+from Rotated_MNIST.train import fit, get_model_optimizer, train_dataloader_MNIST, test_dataloader_MNIST
+
 class Z2CNN(nn.Module):
 
   def __init__( self, input_size: int, input_channels: int, n_feature: int, output_size: int):
