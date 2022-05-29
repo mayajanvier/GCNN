@@ -27,7 +27,6 @@ class Z2CNN(nn.Module):
     self.conv6 = nn.Conv2d(n_feature, n_feature, kernel_size=ksize,padding=1)
     self.bn6 = nn.BatchNorm2d(n_feature)
     self.conv7 = nn.Conv2d(n_feature, output_size, kernel_size=ksize_f,padding=1)
-    #self.bn7 = nn.BatchNorm2d(n_feature)
     self.pool = nn.MaxPool2d(2, 2)
     self.dropout2d = nn.Dropout2d(p=0.3)  
     
@@ -48,5 +47,27 @@ class Z2CNN(nn.Module):
       x = F.relu(self.bn5(self.dropout2d(self.conv5(x))))
       x = F.relu(self.bn6(self.dropout2d(self.conv6(x))))
       x = self.conv7(x)
-      x = x.view(x.shape[0],-1) #utiliser softmax ?
+      x = x.view(x.shape[0],-1) 
       return x
+    
+#Parameters for training
+n_features = 20
+epochs= 5
+output_size = 10 #number of categories
+models_accuracy = {}
+
+# Definition of the model 
+model_z2cnn = Z2CNN(28*28, 1, n_features, output_size)  #28*28 is the size of the images in MNIST
+model_z2cnn.to(device)
+optimizer = get_model_optimizer(model_z2cnn)
+
+#Training
+fit(epochs=epochs, 
+    train_dl=train_loader_MNIST,
+    test_dl=test_loader_MNIST,
+    model=model_z2cnn,
+    opt=optimizer,
+    tag='z2cnn',
+    device=device)
+
+
