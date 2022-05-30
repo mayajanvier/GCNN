@@ -2,9 +2,15 @@
 
 Implementation of [Group Equivariant Convolutional Network (T.S. Cohen, M. Wellin, 2016](https://arxiv.org/abs/1602.07576), using PyTorch. 
 
+# Installation 
+Install [GrouPy](https://github.com/adambielski/GrouPy).
+
 ## Rotated MNIST 
 Implementation of the rotated dataset, baseline Z2CNN, P4CNN with and without dropout, P4CNN Rotation Polling and P4MCNN as an addition to original paper. 
-Training routine taken from [Adam Bielski's implementation](https://github.com/adambielski/pytorch-gconv-experiments)
+Training routine taken from [Adam Bielski's implementation](https://github.com/adambielski/pytorch-gconv-experiments).
+
+To run it :
+??
 
 ![Rotated digit]
 (/../Rotated_MNIST/Rotated one.png)
