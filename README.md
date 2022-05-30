@@ -13,7 +13,7 @@ To run it :
 ??
 
 ![Rotated digit]
-(/../Rotated_MNIST/Rotated one.png)
+(/../main/Rotated_MNIST/Rotated one.png)
 
 ### Baseline model
 The baseline for this dataset is a Z2CNN with:
