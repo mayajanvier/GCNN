@@ -14,6 +14,10 @@ To run it :
 
 ![Rotated digit](/../main/Rotated_MNIST/Rotated one.png)
 
+<picture>
+  <source media=srcset="/../main/Rotated_MNIST/Rotated one.png">
+</picture>
+
 ### Baseline model
 The baseline for this dataset is a Z2CNN with:
 *   7 layers of 3x3 convolutions (4x4 in the final layer), with 20 channels for each layer
