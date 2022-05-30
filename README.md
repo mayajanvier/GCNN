@@ -12,8 +12,7 @@ Training routine taken from [Adam Bielski's implementation](https://github.com/a
 To run it :
 ??
 
-![Rotated digit]
-(/../main/Rotated_MNIST/Rotated one.png)
+![Rotated digit](/../main/Rotated_MNIST/Rotated one.png)
 
 ### Baseline model
 The baseline for this dataset is a Z2CNN with:
