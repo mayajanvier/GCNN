@@ -38,12 +38,14 @@ We need to divide the number of filters by $\sqrt 4=2$ in order to keep the numb
 
 We will also test the **hypothesis that it performs better without dropout**. 
 
-## P4CNN Rotation Pooling
+### P4CNN Rotation Pooling
 The P4CNN Rotation Pooling is a variant of the former model, but we insert a coset max-pooling layer over rotations. 
 
-## P4MCNN
+### P4MCNN
 Same as P4CNN but with **p4m-convolutions** (the group p4m consists of all compositions of translations,
 mirror reflections, and rotations by 90 degrees about any center of rotation in the grid).
+
+We need to divide the number of filters by $\sqrt 8\approx 3$ in order to keep the number of parameters approximately fixed: we then have **7 channels** instead of 20.
 
 
 ## CIFAR 10
@@ -56,3 +58,6 @@ Model from [Springenberg et al.(2015)](https://arxiv.org/pdf/1412.6806.pdf), whi
 
 
 ![all-cnn-c.JPG](https://github.com/mayajanvier/GCNN/blob/main/all-cnn-c.JPG) 
+
+### ResNet44
+
