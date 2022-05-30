@@ -4,9 +4,10 @@ Implementation of [Group Equivariant Convolutional Network (T.S. Cohen, M. Welli
 
 ## Rotated MNIST 
 Implementation of the rotated dataset, baseline Z2CNN, P4CNN with and without dropout, P4CNN Rotation Polling and P4MCNN as an addition to original paper. 
-Training routine taken from [Adam Bielski implementation](https://github.com/adambielski/pytorch-gconv-experiments)
+Training routine taken from [Adam Bielski's implementation](https://github.com/adambielski/pytorch-gconv-experiments)
 
-![Rotated digit](/../Rotated_MNIST/Rotated one.png)
+![Rotated digit]
+(/../Rotated_MNIST/Rotated one.png)
 
 ### Baseline model
 The baseline for this dataset is a Z2CNN with:
@@ -15,7 +16,7 @@ The baseline for this dataset is a Z2CNN with:
 *   batch normalization
 *   dropout
 *   max-pooling after layer 2
-*   
+
 Typically, batchnorm is applied before the non-linearity. 
 
 The optimisation is performed with Adam. 
