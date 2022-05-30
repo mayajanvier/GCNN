@@ -12,7 +12,7 @@ Training routine taken from [Adam Bielski's implementation](https://github.com/a
 To run it :
 ??
 
-![Rotated digit](/../main/Rotated_MNIST/Rotated one.png)
+![Rotated one](https://github.com/mayajanvier/GCNN/blob/main/Rotated_MNIST/Rotated%20one.png))
 
 <picture>
   <source media=srcset="/../main/Rotated_MNIST/Rotated one.png">
