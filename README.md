@@ -5,11 +5,11 @@ Implementation of [Group Equivariant Convolutional Network (T.S. Cohen, M. Welli
 # Installation 
 Install [GrouPy](https://github.com/adambielski/GrouPy).
 Go to the folder with the model you want to try and just run it: 
-`''
+```
 cd my_dataset_folder
 cd my_model
 python model.py
-'''
+```
 
 ## Rotated MNIST 
 Implementation of the rotated dataset, baseline Z2CNN, P4CNN with and without dropout, P4CNN Rotation Polling and P4MCNN as an addition to original paper. 
