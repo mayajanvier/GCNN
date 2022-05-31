@@ -60,9 +60,8 @@ Implementation of baseline ALL-CNN-C, its p4 modification, baseline ResNet44 and
 Model from [Springenberg et al.(2015)](https://arxiv.org/pdf/1412.6806.pdf), which consists of a sequence of
 9 strided and non-strided convolution layers, interspersed with rectified linear activation units. 
 
-![all-cnn-c.JPG](https://github.com/mayajanvier/GCNN/blob/main/all-cnn-c.JPG) 
+![all-cnn-c.JPG](https://github.com/mayajanvier/GCNN/blob/main/allcnnc.JPG) 
 
-![all-cnn-c2.JPG](https://github.com/mayajanvier/GCNN/blob/main/all-cnn-c2.JPG)
 
 ### All-CNN-C p4 and p4m
 
