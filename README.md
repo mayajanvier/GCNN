@@ -3,8 +3,14 @@
 Implementation of [Group Equivariant Convolutional Network (T.S. Cohen, M. Wellin, 2016](https://arxiv.org/abs/1602.07576), using PyTorch. 
 
 # Installation 
-Install [GrouPy](https://github.com/adambielski/GrouPy).
-Go to the folder with the model you want to try and just run it: 
+Install [GrouPy](https://github.com/adambielski/GrouPy), using: 
+```
+git clone https://github.com/adambielski/GrouPy
+cd GrouPy
+python setup.py install
+```
+
+To run a model, go to the folder with the model you want to try and just run it: 
 ```
 cd my_dataset_folder
 cd my_model
@@ -36,8 +42,6 @@ Implements **p4-convolutions** instead of the classic ones (the group p4 consist
 
 We need to divide the number of filters by $\sqrt 4=2$ in order to keep the number of parameters approximately fixed: we then have **10 channels** instead of 20. 
 
-We will also test the **hypothesis that it performs better without dropout**. 
-
 ### P4CNN Rotation Pooling
 The P4CNN Rotation Pooling is a variant of the former model, but we insert a coset max-pooling layer over rotations. 
 
@@ -56,8 +60,11 @@ Implementation of baseline ALL-CNN-C, its p4 modification, baseline ResNet44 and
 Model from [Springenberg et al.(2015)](https://arxiv.org/pdf/1412.6806.pdf), which consists of a sequence of
 9 strided and non-strided convolution layers, interspersed with rectified linear activation units. 
 
-
 ![all-cnn-c.JPG](https://github.com/mayajanvier/GCNN/blob/main/all-cnn-c.JPG) 
+
+### All-CNN-C p4 and p4m
+
+Derived from All-CNN-C, replacing each convolutional layer by its p4 or p4m version. 
 
 ### ResNet44
 
