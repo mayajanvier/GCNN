@@ -197,6 +197,9 @@ class AllCnnC(nn.Module):
     self.conv9 = nn.Conv2d(192,10,kernel_size=1,padding=1)
     self.dropout2d_input = nn.Dropout2d(p=0.2)
     self.dropout2d = nn.Dropout2d(p=0.5)
+    self.fc1 = nn.Linear(40, 50)
+    self.fc2 = nn.Linear(50, 10)
+
 
 
   def forward(self, 
@@ -220,6 +223,9 @@ class AllCnnC(nn.Module):
       x = nn.AvgPool2d((6,6),None,padding=1)(x)
       #x = jnp.squeeze(x, axis=(1,2))
       x = x.view(x.shape[0],-1) 
+      x = x.view(x.shape[0],-1) 
+      x = F.relu(self.fc1(x))
+      x = self.fc2(x)
       return F.log_softmax(x)
     
     
@@ -601,7 +607,7 @@ def test_cifar():
         pred = output.data.max(1, keepdim=True)[1] # get the index of the max log-probability
         correct += pred.eq(target.data.view_as(pred)).cpu().sum()
 
-    test_loss /= len(test_loader.dataset)
+    test_loss /= len(test_loader_CIFAR.dataset)
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
         test_loss, correct, len(test_loader_CIFAR.dataset),
         100. * correct / len(test_loader_CIFAR.dataset)))
