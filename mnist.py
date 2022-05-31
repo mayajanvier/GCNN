@@ -221,7 +221,105 @@ class AllCnnC(nn.Module):
       #x = jnp.squeeze(x, axis=(1,2))
       x = x.view(x.shape[0],-1) 
       return F.log_softmax(x)
+    
+    
+class AllCnnC_p4(nn.Module):
 
+  def __init__( self, input_size=32*32, input_channels=1, output_size=10):
+    """
+    :param input_size: number of pixels in the image
+    :param input_channels: number of color channels in the image
+    :param n_feature: size of the hidden dimensions to use
+    :param output_size: expected size of the output
+    """
+
+    super().__init__()
+    self.conv1 = P4ConvZ2(1, 48, kernel_size=3)
+    self.conv2 = P4ConvP4(48, 48, kernel_size=3)
+    self.conv3 = P4ConvP4(48, 48, kernel_size=3, stride=2)
+    self.conv4 = P4ConvP4(48, 96, kernel_size=3)
+    self.conv5 = P4ConvP4(96, 96, kernel_size=3)
+    self.conv6 = P4ConvP4(96, 96, kernel_size=3, stride=2)
+    self.conv7 = P4ConvP4(96, 96, kernel_size=3)
+    self.conv8 = P4ConvP4(96, 96, kernel_size=1)
+    self.conv9 = P4ConvP4(96, 10, kernel_size=1)
+
+    self.dropout2d_input = nn.Dropout2d(p=0.2)
+    self.dropout2d = nn.Dropout2d(p=0.5)
+
+
+  def forward(self, 
+              x: torch.Tensor
+      ) -> torch.Tensor:
+      """
+      :param x: batch of images with size [batch, 1, w, h]
+
+      :returns: predictions with size [batch, output_size]
+      """
+      x= self.dropout2d_input(x) #input dropout=0.2
+      x = F.relu(self.conv1(x))
+      x = F.relu(self.conv2(x))
+      x = F.relu(self.dropout2d(self.conv3(x))) #dropout=0.5
+      x = F.relu(self.conv4(x))
+      x = F.relu(self.conv5(x))
+      x = F.relu(self.dropout2d(self.conv6(x))) #dropout=0.5
+      x = F.relu(self.conv7(x))
+      x = F.relu(self.conv8(x))
+      x = F.relu(self.conv9(x))
+      x = nn.AvgPool2d((6,6),None,padding=1)(x)
+      #x = jnp.squeeze(x, axis=(1,2))
+      x = x.view(x.shape[0],-1) 
+      return F.log_softmax(x)
+    
+class AllCnnC_p4m(nn.Module):
+
+  def __init__( self, input_size=32*32, input_channels=1, output_size=10):
+    """
+    :param input_size: number of pixels in the image
+    :param input_channels: number of color channels in the image
+    :param n_feature: size of the hidden dimensions to use
+    :param output_size: expected size of the output
+    """
+
+    super().__init__()
+    self.conv1 = P4MConvZ2(1, 32, kernel_size=3)
+    self.conv2 = P4MConvP4M(32, 32, kernel_size=3)
+    self.conv3 = P4MConvP4M(32, 32, kernel_size=3, stride=2)
+    self.conv4 = P4MConvP4M(32, 64, kernel_size=3)
+    self.conv5 = P4MConvP4M(64, 64, kernel_size=3)
+    self.conv6 = P4MConvP4M(64, 64, kernel_size=3, stride=2)
+    self.conv7 = P4MConvP4M(64, 64, kernel_size=3)
+    self.conv8 = P4MConvP4M(64, 64, kernel_size=1)
+    self.conv9 = P4MConvP4M(64, 10, kernel_size=1)
+
+    self.dropout2d_input = nn.Dropout2d(p=0.2)
+    self.dropout2d = nn.Dropout2d(p=0.5)
+
+
+  def forward(self, 
+              x: torch.Tensor
+      ) -> torch.Tensor:
+      """
+      :param x: batch of images with size [batch, 1, w, h]
+
+      :returns: predictions with size [batch, output_size]
+      """
+      x= self.dropout2d_input(x) #input dropout=0.2
+      x = F.relu(self.conv1(x))
+      x = F.relu(self.conv2(x))
+      x = F.relu(self.dropout2d(self.conv3(x))) #dropout=0.5
+      x = F.relu(self.conv4(x))
+      x = F.relu(self.conv5(x))
+      x = F.relu(self.dropout2d(self.conv6(x))) #dropout=0.5
+      x = F.relu(self.conv7(x))
+      x = F.relu(self.conv8(x))
+      x = F.relu(self.conv9(x))
+      x = nn.AvgPool2d((6,6),None,padding=1)(x)
+      #x = jnp.squeeze(x, axis=(1,2))
+      x = x.view(x.shape[0],-1) 
+      return F.log_softmax(x)
+    
+    
 class P4CNN_drop(nn.Module):
     def __init__(self):
         super(P4CNN_drop, self).__init__()
