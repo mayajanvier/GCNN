@@ -222,8 +222,7 @@ class AllCnnC(nn.Module):
       x = F.relu(self.conv9(x))
       x = nn.AvgPool2d((6,6),None,padding=1)(x)
       #x = jnp.squeeze(x, axis=(1,2))
-      x = x.view(x.shape[0],-1) 
-      x = x.view(x.shape[0],-1) 
+      x = x.view(x.shape[0],-1)  
       x = F.relu(self.fc1(x))
       x = self.fc2(x)
       return F.log_softmax(x)
@@ -240,15 +239,17 @@ class AllCnnC_p4(nn.Module):
     """
 
     super().__init__()
-    self.conv1 = P4ConvZ2(1, 48, kernel_size=3)
-    self.conv2 = P4ConvP4(48, 48, kernel_size=3)
+    self.conv1 = P4ConvZ2(1, 48, kernel_size=3,padding=1)
+    self.conv2 = P4ConvP4(48, 48, kernel_size=3,padding=1)
     self.conv3 = P4ConvP4(48, 48, kernel_size=3, stride=2)
-    self.conv4 = P4ConvP4(48, 96, kernel_size=3)
-    self.conv5 = P4ConvP4(96, 96, kernel_size=3)
+    self.conv4 = P4ConvP4(48, 96, kernel_size=3,padding=1)
+    self.conv5 = P4ConvP4(96, 96, kernel_size=3,padding=1)
     self.conv6 = P4ConvP4(96, 96, kernel_size=3, stride=2)
-    self.conv7 = P4ConvP4(96, 96, kernel_size=3)
-    self.conv8 = P4ConvP4(96, 96, kernel_size=1)
-    self.conv9 = P4ConvP4(96, 10, kernel_size=1)
+    self.conv7 = P4ConvP4(96, 96, kernel_size=3,padding=1)
+    self.conv8 = P4ConvP4(96, 96, kernel_size=1,padding=1)
+    self.conv9 = P4ConvP4(96, 10, kernel_size=1,padding=1)
+    self.fc1 = nn.Linear(4840, 50)
+    self.fc2 = nn.Linear(50, 10)
 
     self.dropout2d_input = nn.Dropout2d(p=0.2)
     self.dropout2d = nn.Dropout2d(p=0.5)
@@ -272,9 +273,11 @@ class AllCnnC_p4(nn.Module):
       x = F.relu(self.conv7(x))
       x = F.relu(self.conv8(x))
       x = F.relu(self.conv9(x))
-      x = nn.AvgPool2d((6,6),None,padding=1)(x)
+      #x = nn.AvgPool2d((6,6),None,padding=1)(x)
       #x = jnp.squeeze(x, axis=(1,2))
       x = x.view(x.shape[0],-1) 
+      x = F.relu(self.fc1(x))
+      x = self.fc2(x)
       return F.log_softmax(x)
     
 class AllCnnC_p4m(nn.Module):
@@ -297,6 +300,8 @@ class AllCnnC_p4m(nn.Module):
     self.conv7 = P4MConvP4M(64, 64, kernel_size=3)
     self.conv8 = P4MConvP4M(64, 64, kernel_size=1)
     self.conv9 = P4MConvP4M(64, 10, kernel_size=1)
+    self.fc1 = nn.Linear(320, 50)
+    self.fc2 = nn.Linear(50, 10)
 
     self.dropout2d_input = nn.Dropout2d(p=0.2)
     self.dropout2d = nn.Dropout2d(p=0.5)
@@ -320,9 +325,11 @@ class AllCnnC_p4m(nn.Module):
       x = F.relu(self.conv7(x))
       x = F.relu(self.conv8(x))
       x = F.relu(self.conv9(x))
-      x = nn.AvgPool2d((6,6),None,padding=1)(x)
+      #x = nn.AvgPool2d((6,6),None,padding=1)(x)
       #x = jnp.squeeze(x, axis=(1,2))
-      x = x.view(x.shape[0],-1) 
+      x = x.view(x.shape[0],-1)
+      x = F.relu(self.fc1(x))
+      x = self.fc2(x) 
       return F.log_softmax(x)
     
     
@@ -505,9 +512,10 @@ class P4MCNN(nn.Module): #no dropout
 
 
 
-#TRIALS 
+#TRIALS
+
 print('AllCnnC')
-model = AllCnnC()
+model = AllCnnC_p4m()
 if args.cuda:
     model.cuda()
 
@@ -515,13 +523,13 @@ optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9,weight_decay=0.0
 
 """
 print('AllCNNC')
-model = AllCnnC()
+model = P4CNN_RP()
 if args.cuda:
     model.cuda()
 
 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
 #optimizer = optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-5)
-"""
+""" 
 def train(epoch):
     model.train()
     for batch_idx, (data, target) in enumerate(train_loader):
