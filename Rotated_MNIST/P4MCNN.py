@@ -123,7 +123,7 @@ def train(epoch):
 
 
 def test():
-  """ Test the performances on both rotated and non rotated test sets"""
+    """ Test the performances on both rotated and non rotated test sets"""
     print('test non rotated')
     model.eval()
     test_loss = 0
