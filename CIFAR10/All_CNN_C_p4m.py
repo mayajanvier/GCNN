@@ -9,7 +9,6 @@ from torch.autograd import Variable
 
 # P4M layers from GrouPy
 from groupy.gconv.pytorch_gconv.splitgconv2d import P4MConvZ2, P4MConvP4M
-from groupy.gconv.pytorch_gconv.pooling import plane_group_spatial_max_pooling
 
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
