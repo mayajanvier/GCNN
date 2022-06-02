@@ -1,3 +1,70 @@
+from __future__ import print_function
+import argparse
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from torchvision import datasets, transforms
+from torch.autograd import Variable
+
+# Training settings
+parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
+parser.add_argument('--batch-size', type=int, default=64, metavar='N',
+                    help='input batch size for training (default: 64)')
+parser.add_argument('--test-batch-size', type=int, default=1000, metavar='N',
+                    help='input batch size for testing (default: 1000)')
+parser.add_argument('--epochs', type=int, default=2, metavar='N',
+                    help='number of epochs to train (default: 2)')
+parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
+                    help='learning rate (default: 0.01)')
+parser.add_argument('--momentum', type=float, default=0.5, metavar='M',
+                    help='SGD momentum (default: 0.5)')
+parser.add_argument('--no-cuda', action='store_true', default=False,
+                    help='disables CUDA training')
+parser.add_argument('--seed', type=int, default=10, metavar='S',
+                    help='random seed (default: 10)')
+parser.add_argument('--log-interval', type=int, default=10, metavar='N',
+                    help='how many batches to wait before logging training status')
+args = parser.parse_args()
+args.cuda = not args.no_cuda and torch.cuda.is_available()
+
+torch.manual_seed(args.seed)
+if args.cuda:
+    torch.cuda.manual_seed(args.seed)
+
+kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
+
+# Rotated datasets for training and test 
+
+train_loader = torch.utils.data.DataLoader(
+    datasets.MNIST('../data', train=True, download=True,
+                   transform=transforms.Compose([
+                       transforms.ToTensor(),
+                       transforms.Normalize((0.1307,), (0.3081,)),
+                       transforms.RandomRotation(90)
+                   ])),
+    batch_size=args.batch_size, shuffle=True, **kwargs)
+
+test_loader_rot = torch.utils.data.DataLoader(
+    datasets.MNIST('../data', train=False, transform=transforms.Compose([
+                       transforms.ToTensor(),
+                       transforms.Normalize((0.1307,), (0.3081,)),
+                       transforms.RandomRotation(90)
+                   ])),
+    batch_size=args.test_batch_size, shuffle=True, **kwargs)
+
+# Non rotated test dataset for comparison
+
+test_loader = torch.utils.data.DataLoader(
+    datasets.MNIST('../data', train=False, transform=transforms.Compose([
+                       transforms.ToTensor(),
+                       transforms.Normalize((0.1307,), (0.3081,))#,
+                       #transforms.RandomRotation(90)
+                   ])),
+    batch_size=args.test_batch_size, shuffle=True, **kwargs)
+
+# Baseline Z2CNN 
+
 class Z2CNN(nn.Module):
     
   def __init__( self, input_size=28*28, input_channels=1, n_feature=20, output_size=10):
