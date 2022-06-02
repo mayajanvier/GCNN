@@ -16,6 +16,7 @@ cd my_dataset_folder
 python my_model.py
 ```
 
+# Group Equivariant CNN
 ## Rotated MNIST 
 Implementation of the rotated dataset, baseline Z2CNN, P4CNN with and without dropout, P4CNN Rotation Polling and P4MCNN as an addition to original paper. 
 Training routine taken from [Adam Bielski's implementation](https://github.com/adambielski/pytorch-gconv-experiments).
@@ -68,12 +69,14 @@ Model from [Springenberg et al.(2015)](https://arxiv.org/pdf/1412.6806.pdf), whi
 
 
 ### All-CNN-C p4 and p4m
-
 Derived from All-CNN-C, replacing each convolutional layer by its p4 or p4m version. 
 
 # Group Equivariant GAN
+Using group equivariant convolutional networks to create a GAN.
+
 ## Vanilla GAN
-Baseline Vanilla GAN from [Sovit Ranjan Rath](https://debuggercafe.com/generating-mnist-digit-images-using-vanilla-gan-with-pytorch/). 
+Baseline Vanilla GAN from [Sovit Ranjan Rath](https://debuggercafe.com/generating-mnist-digit-images-using-vanilla-gan-with-pytorch/) on Rotated MNIST. 
 
 ## P4 Vanilla GAN
-The discrimiator is replaced by P4CNN_no_drop. 
+The discriminator is replaced by P4CNN_no_drop. 
+
