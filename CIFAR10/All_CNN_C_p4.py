@@ -65,7 +65,7 @@ test_loader_CIFAR = torch.utils.data.DataLoader(
     shuffle=True,
 )
 
-# Baseline All-CNN-C
+# All-CNN-C P4
 class AllCnnC_p4(nn.Module):
 
   def __init__( self, input_size=32*32, input_channels=1, output_size=10):
