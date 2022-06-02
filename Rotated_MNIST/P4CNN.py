@@ -66,7 +66,7 @@ test_loader = torch.utils.data.DataLoader(
                    ])),
     batch_size=args.test_batch_size, shuffle=True, **kwargs)
 
-# Different version of P4CNN 
+# Different versions of P4CNN 
 class P4CNN_drop(nn.Module):
   """ P4CNN without the last max pooling layer, with dropout """
     def __init__(self):
