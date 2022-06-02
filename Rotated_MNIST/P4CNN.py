@@ -229,6 +229,7 @@ for epoch in range(1, args.epochs + 1):
 # Other versions    
 print('P4CNN without last max pooling layer, with dropout')
 model = P4CNN_drop()
+optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
 if args.cuda:
     model.cuda()
 for epoch in range(1, args.epochs + 1):
@@ -238,6 +239,7 @@ for epoch in range(1, args.epochs + 1):
  
 print('P4CNN with last max pooling layer, without dropout')
 model = P4CNN_max()
+optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
 if args.cuda:
     model.cuda()
 for epoch in range(1, args.epochs + 1):
