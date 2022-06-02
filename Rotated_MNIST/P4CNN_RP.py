@@ -8,7 +8,7 @@ from torchvision import datasets, transforms
 from torch.autograd import Variable
 
 # P4 layers from GrouPy 
-from groupy.gconv.pytorch_gconv.splitgconv2d import P4ConvZ2, P4MConvP4
+from groupy.gconv.pytorch_gconv.splitgconv2d import P4ConvZ2, P4ConvP4
 from groupy.gconv.pytorch_gconv.pooling import plane_group_spatial_max_pooling
 
 
