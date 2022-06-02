@@ -115,7 +115,7 @@ class Z2CNN(nn.Module):
       x = F.relu(self.fc1(x))
       x = F.dropout(x, training=self.training)
       x = self.fc2(x)
-      return F.log_softmax(x)*
+      return F.log_softmax(x)
     
     
 #Model definition
@@ -146,7 +146,7 @@ def train(epoch):
 
 
 def test():
-  """ Test the performances on both rotated and non rotated test sets"""
+    """ Test the performances on both rotated and non rotated test sets"""
     print('test non rotated')
     model.eval()
     test_loss = 0
