@@ -7,6 +7,10 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.autograd import Variable
 
+# P4M layers from GrouPy
+from groupy.gconv.pytorch_gconv.splitgconv2d import P4MConvZ2, P4MConvP4M
+from groupy.gconv.pytorch_gconv.pooling import plane_group_spatial_max_pooling
+
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
 parser.add_argument('--batch-size', type=int, default=64, metavar='N',
