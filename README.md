@@ -13,8 +13,7 @@ python setup.py install
 To run a model, go to the folder with the model you want to try and just run it: 
 ```
 cd my_dataset_folder
-cd my_model
-python model.py
+python my_model.py
 ```
 
 ## Rotated MNIST 
@@ -42,6 +41,11 @@ Implements **p4-convolutions** instead of the classic ones (the group p4 consist
 
 We need to divide the number of filters by $\sqrt 4=2$ in order to keep the number of parameters approximately fixed: we then have **10 channels** instead of 20. 
 
+Three versions of P4CNN:
+*   without the last max pooling layer and with dropout (P4CNN_drop)
+*   without the last max pooling layer and without dropout (P4CNN_no_drop)
+*   with the last max pooling layer, without dropout (P4CNN_max)
+
 ### P4CNN Rotation Pooling
 The P4CNN Rotation Pooling is a variant of the former model, but we insert a coset max-pooling layer over rotations. 
 
@@ -67,5 +71,9 @@ Model from [Springenberg et al.(2015)](https://arxiv.org/pdf/1412.6806.pdf), whi
 
 Derived from All-CNN-C, replacing each convolutional layer by its p4 or p4m version. 
 
-### ResNet44
+# Group Equivariant GAN
+## Vanilla GAN
+Baseline Vanilla GAN from [Sovit Ranjan Rath](https://debuggercafe.com/generating-mnist-digit-images-using-vanilla-gan-with-pytorch/). 
 
+## P4 Vanilla GAN
+The discrimiator is replaced by P4CNN_no_drop. 
