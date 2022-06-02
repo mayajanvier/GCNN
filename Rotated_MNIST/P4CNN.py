@@ -68,7 +68,7 @@ test_loader = torch.utils.data.DataLoader(
 
 # Different versions of P4CNN 
 class P4CNN_drop(nn.Module):
-  """ P4CNN without the last max pooling layer, with dropout """
+    """ P4CNN without the last max pooling layer, with dropout """
     def __init__(self):
         super(P4CNN_drop, self).__init__()
         self.conv1 = P4ConvZ2(1, 10, kernel_size=3)
@@ -97,7 +97,7 @@ class P4CNN_drop(nn.Module):
         return F.log_softmax(x)
 
 class P4CNN_no_drop(nn.Module):
-  """ P4CNN without the last max pooling layer, without dropout """
+    """ P4CNN without the last max pooling layer, without dropout """
     def __init__(self):
         super(P4CNN_no_drop, self).__init__()
         self.conv1 = P4ConvZ2(1, 10, kernel_size=3)
@@ -125,7 +125,7 @@ class P4CNN_no_drop(nn.Module):
         return F.log_softmax(x)
 
 class P4CNN_max(nn.Module): 
-  """ P4CNN with the last max pooling layer, without dropout """
+    """ P4CNN with the last max pooling layer, without dropout """
     def __init__(self):
         super(P4CNN_max, self).__init__()
         self.conv1 = P4ConvZ2(1, 10, kernel_size=3)
@@ -182,7 +182,7 @@ def train(epoch):
 
 
 def test():
-  """ Test the performances on both rotated and non rotated test sets"""
+    """ Test the performances on both rotated and non rotated test sets"""
     print('test non rotated')
     model.eval()
     test_loss = 0
