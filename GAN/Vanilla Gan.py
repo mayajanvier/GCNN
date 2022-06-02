@@ -21,6 +21,7 @@ torch.cuda.manual_seed(0)
 torch.backends.cudnn.deterministic = True  # Note that this Deterministic mode can have a performance impact
 torch.backends.cudnn.benchmark = False
 
+# Rotated MNIST dataset 
 train_data = datasets.MNIST('./', train=True, download=True,
                    transform=transforms.Compose([                        
                        transforms.ToTensor(),  
