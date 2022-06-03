@@ -30,7 +30,7 @@ train_data = datasets.MNIST('./', train=True, download=True,
                    ]))
 
 train_loader_MNIST = torch.utils.data.DataLoader(train_data,
-                batch_size=64,
+                batch_size=512,
                 shuffle=True)
 ### Vanilla GAN
 class Generator(nn.Module):
