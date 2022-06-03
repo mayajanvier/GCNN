@@ -1,6 +1,6 @@
 # GCNN
 
-Implementation of [Group Equivariant Convolutional Network (T.S. Cohen, M. Wellin, 2016](https://arxiv.org/abs/1602.07576), using PyTorch. 
+Implementation of [Group Equivariant Convolutional Network (T.S. Cohen, M. Wellin, 2016)](https://arxiv.org/abs/1602.07576), using PyTorch. 
 
 # Installation 
 Install [GrouPy](https://github.com/adambielski/GrouPy), using: 
