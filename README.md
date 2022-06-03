@@ -77,6 +77,10 @@ Using group equivariant convolutional networks to create a GAN.
 ## Vanilla GAN
 Baseline Vanilla GAN from [Sovit Ranjan Rath](https://debuggercafe.com/generating-mnist-digit-images-using-vanilla-gan-with-pytorch/) on Rotated MNIST. 
 
+![gif.gif](https://github.com/mayajanvier/GCNN/blob/main/generator_images.gif)
+
+Gif of the generated images, epoch by epoch.
+
 ## P4 Vanilla GAN
 The discriminator is replaced by P4CNN_no_drop. 
 
